@@ -26,10 +26,22 @@ BBPATH = "${PALMDIR}:${TMPDIR}"
 OECORE_LAYER ?= "${PALMDIR}/openembedded-core/meta"
 METAOE_LAYER ?= "${PALMDIR}/meta-openembedded/meta-oe"
 WEBOS_LAYER ?= "${PALMDIR}/meta-webos"
+WEBOS_PORTS_LAYER ?= "${PALMDIR}/meta-webos-ports"
+META_FSO_LAYER ?= "${PALMDIR}/meta-smartphone/meta-fso"
+META_SAMSUNG_LAYER ?= "${PALMDIR}/meta-smartphone/meta-samsung"
+META_ANDROID_LAYER ?= "${PALMDIR}/meta-smartphone/meta-android"
+META_ROCK_LAYER ?= "${PALMDIR}/meta-rock"
+META_INTEL_LAYER ?= "${PALMDIR}/meta-intel"
 
 BBFILES ?= ""
 BBLAYERS ?= " \
-  ${OECORE_LAYER} \
-  ${METAOE_LAYER} \
+  ${WEBOS_PORTS_LAYER} \
   ${WEBOS_LAYER} \
+  ${META_ROCK_LAYER} \
+  ${META_INTEL_LAYER} \
+  ${META_SAMSUNG_LAYER} \
+  ${META_ANDROID_LAYER} \
+  ${META_FSO_LAYER} \
+  ${METAOE_LAYER} \
+  ${OECORE_LAYER} \
   "

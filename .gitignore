@@ -8,3 +8,11 @@ downloads
 mcf.status
 sstate-cache
 tmp
+bitbake
+meta-webos
+meta-webos-ports
+meta-openembedded
+meta-smartphone
+meta-rock
+meta-intel
+openembedded-core
