@@ -16,14 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-##
-# FIXME: I haven't figured out how to do the git submodule stuff using
-# the GitPython library.  The library looks pretty messy, frankly, but
-# I don't see any other plausible alternatives.  So for now I'm just
-# doing shell calls.  Even if I did find a way to use the library,
-# there's an open question of how to get it onto the current machine
-# so that it can be used.
-
 from __future__ import with_statement, print_function, unicode_literals, absolute_import, division
 
 import argparse
@@ -34,8 +26,6 @@ import subprocess
 import sys
 
 logger = logging.getLogger(__name__)
-
-submodules = {}
 
 def echo_check_call(todo, verbosity, cwd=None):
    if verbosity:
@@ -48,19 +38,6 @@ def echo_check_call(todo, verbosity, cwd=None):
                                 stderr=sys.stderr,
                                 shell=True,
                                 cwd=cwd)
-
-def force_submodule(submodule, verbosity, branch='submodule'):
-    global submodules
-
-    if submodule not in submodules:
-        # luckily, these commands are idempotent.
-        echo_check_call('git submodule init {}'.format(submodule), verbosity)
-        echo_check_call('git submodule update {}'.format(submodule), verbosity)
-
-        if branch != 'submodule':
-           echo_check_call('git checkout {}'.format(branch), verbosity, cwd=submodule)
-
-        submodules[submodule] = branch
 
 # Essentially, mcf parses options, creates mcf.status, and runs mcf.status.
 
@@ -179,7 +156,6 @@ if __name__ == '__main__':
     options = getopts()
 
     if options.primary or options.secondary:
-        force_submodule('meta-webos', options.verbose, options.webos)
         with open(os.path.join(os.path.dirname(progname), 'meta-webos', 'conf', 'devices'), 'r') as f:
             lines = [l.split() for l in f]
 
@@ -277,18 +253,5 @@ if __name__ == '__main__':
             cmd = cmd.replace(i, j)
 
         echo_check_call(cmd, options.verbose)
-
-        if options.bitbake:
-            force_submodule('bitbake', options.verbose, options.bitbake)
-
-        if options.oecore:
-            force_submodule('openembedded-core', options.verbose, options.oecore)
-
-        # IKQ temporary replacing meta-openembedded with meta-oe from openwebos github
-        if options.metaoe:
-            force_submodule('meta-oe', options.verbose, branch=options.metaoe)
-
-        if options.webos:
-            force_submodule('meta-webos', options.verbose, branch=options.webos)
 
         logger.info('Done.\n')
