@@ -465,4 +465,12 @@ OPENWEBOS_GIT_REPO = "@privateinternalcomponentmirror@"
 # Rich suspects these are now unused:
 COVERAGE_BUILD = "0"
 
+# unused .bbappends, be carefull with leading white space (don't use += here)
+BBMASK = ".*/meta-smartphone/meta-samsung/recipes-core/systemd/.*"
 
+# BB_SIGNATURE_HANDLER_forcevariable = "OEBasic"
+
+TERMCMD = "${SCREEN_TERMCMD}"
+TERMCMDRUN = "${SCREEN_TERMCMDRUN}"
+
+INHERIT += "buildhistory"
