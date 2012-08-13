@@ -219,4 +219,9 @@ if __name__ == '__main__':
 
         echo_check_call(cmd, options.verbose)
 
+        subprocess.check_call('./oebb.sh update',
+                              stdout=sys.stdout,
+                              stderr=sys.stderr,
+                              shell=True)
+
         logger.info('Done.\n')
