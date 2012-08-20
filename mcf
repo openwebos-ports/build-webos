@@ -82,33 +82,6 @@ def getopts():
     variations.add_argument('-b', '--enable-bb-number-threads', dest='bb_number_threads', type=int, default=1,
                             help='maximum number of bitbake tasks to spawn (default: 1)')
 
-    partitions = parser.add_argument_group('Source Partitions')
-
-    partitions.add_argument('--disable-bitbake', dest='bitbake', action='store_const', const=False,
-                            default='submodule', help='do not check out bitbake layer (default: False)')
-
-    partitions.add_argument('-B', '--enable-bitbake', dest='bitbake', default='submodule',
-                            help='ref to use for bitbake (default: submodule)')
-
-    partitions.add_argument('-C', '--disable-oecore', dest='oecore', action='store_const', const=False,
-                            default='submodule', help='do not check out openembedded-core layer (default: False)')
-
-    partitions.add_argument('-D', '--enable-oecore', dest='oecore', default='submodule',
-                            help='ref to use for openembedded-core (default: submodule)')
-
-    partitions.add_argument('-U', '--disable-webos', dest='webos', action='store_const', const=False,
-                            default='submodule', help='do not check out meta-webos layer (default: False)')
-
-    partitions.add_argument('-W', '--enable-webos', dest='webos', default='submodule',
-                            help='ref to use for meta-webos (default: submodule)')
-
-    # IKQ temporary replacing meta-openembedded with meta-oe from openwebos github
-    partitions.add_argument('-M', '--disable-metaoe', '--disable-meta-oe', dest='metaoe', action='store_const', const=False,
-                            default='submodule', help='do not check out meta-oe layer (default: False)')
-
-    partitions.add_argument('-N', '--enable-metaoe', '--enable-meta-oe', dest='metaoe', default='submodule',
-                            help = 'ref from which to check out meta-oe (default: submodule)')
-    
     mirrors = parser.add_argument_group('Mirrors and such')
 
     network = mirrors.add_mutually_exclusive_group()
@@ -210,10 +183,6 @@ if __name__ == '__main__':
         ['@machines_only@', ' '.join([i.split(':')[0] for i in options.machines])],
         ['@parallel_make@', '{}'.format(options.parallel_make)],
         ['@premirror@', options.premirror],
-        ['@bitbake@', '--enable-bitbake={}'.format(options.bitbake) if options.bitbake else '--disable-bitbake'],
-        ['@oecore@', '--enable-oecore={}'.format(options.oecore) if options.oecore else '--disable-oecore'],
-        ['@metaoe@', '--enable-metaoe={}'.format(options.metaoe) if options.metaoe else '--disable-metaoe'],
-        ['@webos@', '--enable-webos={}'.format(options.webos) if options.webos else '--disable-webos'],
         ['@network@', '--{}-network'.format('enable' if options.network else 'disable')],
         ['@fetchpremirroronly@', '--{}-fetch-premirror-only'.format('enable' if options.fetchpremirroronly else 'disable')],
         ['@generatemirrortarballs@', '--{}-generate-mirror-tarballs'.format('enable'
@@ -238,10 +207,6 @@ if __name__ == '__main__':
            --enable-bb-number-threads=@bb_number_threads@ \
            --enable-parallel-make=@parallel_make@ \
            --enable-premirror=@premirror@ \
-           @bitbake@ \
-           @oecore@ \
-           @webos@ \
-           @metaoe@ \
            @network@ \
            @fetchpremirroronly@ \
            @privateinternalcomponentmirror@ \

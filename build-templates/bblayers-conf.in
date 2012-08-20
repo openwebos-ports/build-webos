@@ -23,9 +23,9 @@ PALMDIR ?= "@abs_top_srcdir@"
 TMPDIR := "@abs_top_builddir@"
 BBPATH = "${PALMDIR}:${TMPDIR}"
 
-OECORE_LAYER ?= "@oecore_layer@"
-METAOE_LAYER ?= "@metaoe_layer@"
-WEBOS_LAYER ?= "@webos_layer@"
+OECORE_LAYER ?= "${PALMDIR}/openembedded-core/meta"
+METAOE_LAYER ?= "${PALMDIR}/meta-openembedded/meta-oe"
+WEBOS_LAYER ?= "${PALMDIR}/meta-webos"
 
 BBFILES ?= ""
 BBLAYERS ?= " \

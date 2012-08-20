@@ -30,10 +30,6 @@ exec @prog@ -v \
     --enable-bb-number-threads=@bb_number_threads@ \
     --enable-parallel-make=@parallel_make@ \
     --enable-premirror=@premirror@ \
-    @bitbake@ \
-    @oecore@ \
-    @webos@ \
-    @metaoe@ \
     @network@ \
     @fetchpremirroronly@ \
     @generatemirrortarballs@ \
