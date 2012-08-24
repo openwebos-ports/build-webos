@@ -35,6 +35,7 @@ function set_environment()
     OE_SOURCE_DIR=${OE_BASE}
     export OE_BASE
     export OE_SOURCE_DIR
+    export OE_LAYERS_TXT=${OE_SOURCE_DIR}/layers.txt
 }
 
 ###############################################################################
@@ -63,7 +64,7 @@ function clean_oe()
 function update_oe()
 {
     #manage layers with layerman
-    env gawk -v command=update -f ${OE_BASE}/scripts/layers.awk ${OE_SOURCE_DIR}/layers.txt 
+    env gawk -v command=update -f ${OE_BASE}/scripts/layers.awk ${OE_LAYERS_TXT} 
 }
 
 ###############################################################################
@@ -72,7 +73,7 @@ function update_oe()
 function changelog()
 {
 	set_environment
-	env gawk -v command=changelog -v commandarg=$TAG -f ${OE_BASE}/scripts/layers.awk ${OE_SOURCE_DIR}/layers.txt 
+	env gawk -v command=changelog -v commandarg=$TAG -f ${OE_BASE}/scripts/layers.awk ${OE_LAYERS_TXT} 
 }
 
 ###############################################################################
@@ -82,7 +83,7 @@ function layer_info()
 {
 	set_environment
 	rm -f ${OE_SOURCE_DIR}/info.txt
-	env gawk -v command=info -f ${OE_BASE}/scripts/layers.awk ${OE_SOURCE_DIR}/layers.txt
+	env gawk -v command=info -f ${OE_BASE}/scripts/layers.awk ${OE_LAYERS_TXT}
 	echo
 	echo "Showing contents of ${OE_SOURCE_DIR}/info.txt:"
 	echo
@@ -96,7 +97,7 @@ function layer_info()
 function checkout()
 {
 set_environment
-env gawk -v command=checkout -v commandarg=$TAG -f ${OE_BASE}/scripts/layers.awk ${OE_SOURCE_DIR}/layers.txt 
+env gawk -v command=checkout -v commandarg=$TAG -f ${OE_BASE}/scripts/layers.awk ${OE_LAYERS_TXT} 
 }
 
 
