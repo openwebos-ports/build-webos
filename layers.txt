@@ -1,8 +1,8 @@
 bitbake,git://github.com/openembedded/bitbake.git,master,843d3d6b0a7eb2e2f7b50c555767f5385df16ede
-openembedded-core,git://github.com/openembedded/oe-core.git,master,c6da6b648328377ba3590fd38cb12dad26a46a13
-meta-openembedded,git://github.com/openembedded/meta-oe.git,master,a81cdc840c1dfca2bd0cb4ddd6e4bc1488286649
-meta-intel,git://git.yoctoproject.org/meta-intel,master,2a7a46cad31df8c8c7559d2d55c905ac23a56b65
+openembedded-core,git://github.com/openembedded/oe-core.git,master,da9b66ddde02ec19f3f83f23eb2b595af9a57520
+meta-openembedded,git://github.com/openembedded/meta-oe.git,master,49e269ecc66adda341922cbd86167bbfa97c54ca
+meta-intel,git://git.yoctoproject.org/meta-intel,master,16a7879b98352b70e8c17181912a26212d716c87
 meta-smartphone,git@github.com:openwebos-ports/meta-smartphone.git,openwebos-ports/master,HEAD
 meta-webos,git@github.com:openwebos-ports/meta-webos.git,openwebos-ports/master,HEAD
 meta-webos-ports,git@github.com:openwebos-ports/meta-webos-ports.git,master,HEAD
-meta-rock,git@github.com:openwebos-ports/meta-rock.git,master,HEAD
+meta-rock,git@github.com:openwebos-ports/meta-rock.git,openwebos-ports/master,HEAD
